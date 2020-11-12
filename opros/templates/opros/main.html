@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="shortcut icon" type="image/png" href="assets/images/icon/favicon.ico">-->
+    <meta charset="UTF-8">
+    <title>start page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+
+</head>
+<body>
+{% for questio in questions %}
+
+<div class="col-12 mt-5">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="header-title">Вопрос №{{ forloop.counter }}</h4>
+            <p class="text-muted mb-3">{{ questio.description }}</p><br>
+            <form action="#">
+
+                <b class="text-muted mb-3 d-block">Выберите правильный ответ:</b>
+                {% for answer in answers %}
+
+                <div class="custom-control custom-radio">
+                                    {% csrf_token %}
+                    <input type="radio" id="customRadio{{ answer.id }}" name="customRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio{{ answer.id }}">{{ answer.description }}</label>
+                </div>
+
+                {% endfor %}
+            </form>
+        </div>
+    </div>
+</div>
+{% endfor %}
+</body>
+</html>
